@@ -6,8 +6,9 @@ import { MenuItem } from "../interfaces/menu.intarface";
 import { GetStaticProps } from "next";
 import { API } from "../helpers/api";
 
-export function Home({ menu }: HomeProps): JSX.Element {
+export function Home(): JSX.Element {
   const [rating, setRating] = useState<number>(4);
+
   return (
     <>
       <Htag tag="h1">Текст</Htag>

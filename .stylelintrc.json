@@ -10,6 +10,9 @@
 		"indentation": [
 			1
 		],
-		"color-hex-case": "upper"
+		"selector-class-pattern": "^[a-z]?[a-zA-Z0-9]+$"
+		,
+		"color-hex-case": "upper",
+		"max-line-length": 200
 	}
 }

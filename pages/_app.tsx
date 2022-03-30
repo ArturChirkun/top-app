@@ -3,13 +3,14 @@ import Head from "next/head";
 import "../styles/globals.css";
 import ym from "react-yandex-metrika";
 import { YMInitializer } from "react-yandex-metrika";
+import Router from "next/router";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  // router.events.on("routeChangeComplete", (url: string) => {
-  //   if (typeof window !== "undefined") {
-  //     ym("hit", url);
-  //   }
-  // });
+  Router.events.on("routeChangeComplete", (url: string) => {
+    if (typeof window !== "undefined") {
+      ym("hit", url);
+    }
+  });
   return (
     <>
       <Head>
@@ -32,7 +33,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         />
         <meta property="og:locale" content="ru_RU" />
       </Head>
-      {/* <YMInitializer accounts={[]} options={{ webvisor: true, defer: true }} version='2'/> */}
+      <YMInitializer accounts={[]} options={{ webvisor: true, defer: true }} version='2'/>
       <Component {...pageProps} />
     </>
   );

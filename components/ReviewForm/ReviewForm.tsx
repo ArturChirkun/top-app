@@ -9,7 +9,7 @@ import { Button } from "../button/button";
 import CloseIcon from "./close.svg";
 import { useForm, Controller } from "react-hook-form";
 import { IReviewForm, IReviewSentResponse } from "./ReviewForm.interface";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API } from "../../helpers/api";
 import { useState } from "react";
 
@@ -26,7 +26,7 @@ export const ReviewForm = ({
     reset,
   } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | undefined>("");
 
   const onSubmit = async (formData: IReviewForm) => {
     try {
@@ -40,8 +40,9 @@ export const ReviewForm = ({
       } else {
         setError("Что-то пошло не так");
       }
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      const err = error as AxiosError;
+      setError(err.response?.data);
     }
   };
   return (

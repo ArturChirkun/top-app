@@ -7,7 +7,6 @@ import { TagDiv } from "../Tag/tag";
 import { Button } from "../button/button";
 import { declOfNum, priceRu } from "../../helpers/helpers";
 import { Divider } from "../Divider/Divider";
-import Image from "next/image";
 import { ForwardedRef, forwardRef, useRef, useState } from "react";
 import { Review } from "../Review/Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
@@ -42,7 +41,7 @@ export const Product = motion(
         <div className={className} {...props} ref={ref}>
           <Card className={styles.product}>
             <div className={styles.logo}>
-              <Image
+              <img
                 src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
                 alt={product.title}
                 width={70}
@@ -52,15 +51,15 @@ export const Product = motion(
 
             <div className={styles.title}>{product.title}</div>
             <div className={styles.price}>
-              {priceRu(product.price)}
+              {product?.price && priceRu(product.price)}
               {product.oldPrice && (
                 <TagDiv className={styles.oldPrice} color="green">
-                  {priceRu(product.price - product.oldPrice)}
+                  { product.price  && priceRu(product.price - product.oldPrice)}
                 </TagDiv>
               )}
             </div>
             <div className={styles.credit}>
-              {priceRu(product.credit)}/
+              {product?.credit && priceRu(product.credit)}/
               <span className={styles.month}>мес</span>
             </div>
             <div className={styles.rating}>

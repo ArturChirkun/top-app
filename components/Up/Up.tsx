@@ -1,6 +1,5 @@
 
 import styles from "./Up.module.css";
-import cn from "classnames";
 import { useScrollY } from "../../hooks/useScrollY";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
@@ -27,7 +26,7 @@ export const Up = (): JSX.Element => {
         animate={control}
         initial={{ opacity: 0}}
         className={styles.up} >
-            <ButtonIcon appearence="primary" icon="up" onClick={scrollToTop}/>
+            <ButtonIcon appearence="primary" icon="up" aria-label="наверх" onClick={scrollToTop}/>
         </motion.div>
 
     );
